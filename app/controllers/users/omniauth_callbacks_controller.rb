@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in @user, :event => :authentication
       set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
     else
-      session["devise.google_date"] = request.ev["omniauth.auth"]
+      session["devise.google_date"] = request.env["omniauth.auth"]
     end
     redirect_to '/'
   end
